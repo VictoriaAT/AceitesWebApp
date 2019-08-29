@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+  <h1 class="text-center mb-4"> {{aceite.nombre | uppercase}} </h1>
+
+
+  <div class="row align-content-lg-center">
+
+
+
+    <table class="table table-light">
+      <tr>
+        <td>
+          <table class="table col-sm-12">
+            <tr>
+              <td>
+                <h5>Nombre científico:</h5>
+              </td>
+              <td>
+                {{aceite.nombreCientifico}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h5>Beneficios:</h5>
+              </td>
+              <td>
+                {{aceite.beneficios}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h5>País de origen:</h5>
+              </td>
+              <td>
+                {{aceite.pais}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="button" class="btn btn-primary info-btn" [routerLink]="['/aceites']">
+                  <i class="fas fa-long-arrow-alt-left"> </i>
+                  Regresar</button>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+        <td>
+
+          <div class="card border-success" style="max-width: 25rem; ">
+            <img [src]="aceite.urlImagen" class="card-img-top imagen" style="width: 22rem; height: 18rem; ">
+            <div class="card-body">
+              <h5 class="card-title text-center">
+                <span> {{aceite.nombre}} 100% natural</span>
+              </h5>
+            </div>
+          </div>
+        </td>
+
+
+      </tr>
+
+
+
+
+
+    </table>
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+</div>
