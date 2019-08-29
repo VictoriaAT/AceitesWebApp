@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { AceiteModel } from './../../models/aceite.model';
 import { NgForm } from '@angular/forms';
@@ -12,40 +11,44 @@ import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-aceite',
   templateUrl: './aceite.component.html',
   styleUrls: ['./aceite.component.css']
 })
 export class AceiteComponent implements OnInit {
-
   paises: string[] = ['Brazil', 'India', 'Australia', 'Morocco', 'Bulgaria'];
   aceite = new AceiteModel();
 
-
-  constructor(public servicio: AceitesService, private route: ActivatedRoute) {
-
+  constructor(private servicio: AceitesService, private route: ActivatedRoute) {
+    // const id = this.route.snapshot.paramMap.get('id');
+    // this.servicio
+    //   .getInfoAceite(id)
+    //   .subscribe((resp: AceiteModel) => {
+    //     this.aceite = resp;
+    //     console.log(resp);
+    //     this.aceite.id = id;
+    //   });
   }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-
-
     if (id !== 'nuevo') {
-      this.servicio.getInfoAceite(id).subscribe((resp: AceiteModel) => {
-        this.aceite = resp;
-        this.aceite.id = id;
-        this.aceite.urlImagen = this.servicio.downloadURL;
-      });
+      this.servicio
+        .getInfoAceite(id)
+        .subscribe((resp: AceiteModel) => {
+          this.aceite = resp;
+          console.log('URL IMAGEN', this.aceite.urlImagen);
+          this.aceite.id = id;
+          this.aceite.urlImagen = resp.urlImagen;
+
+
+        });
     }
-
-
   }
 
   guardar(form: NgForm) {
 
-    this.aceite.urlImagen = this.servicio.downloadURL;
     console.log('Formulario', form);
     // console.log('this.aceite', this.aceite);
     if (form.invalid) {
@@ -64,9 +67,8 @@ export class AceiteComponent implements OnInit {
     let peticion: Observable<any>;
 
     if (this.aceite.id) {
-
+      this.servicio.downloadURL = this.aceite.urlImagen;
       peticion = this.servicio.actualizarAceite(this.aceite);
-
       peticion.subscribe(resp => {
         Swal.fire({
           title: this.aceite.nombre,
@@ -75,7 +77,9 @@ export class AceiteComponent implements OnInit {
         });
       });
     } else {
+      this.aceite.urlImagen = this.servicio.downloadURL;
       peticion = this.servicio.insertarAceite(this.aceite);
+      this.servicio.progreso = 0;
       peticion.subscribe(resp => {
         Swal.fire({
           title: this.aceite.nombre,
@@ -84,26 +88,5 @@ export class AceiteComponent implements OnInit {
         });
       });
     }
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
