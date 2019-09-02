@@ -68,6 +68,7 @@ export class AceitesService {
     return this.http.delete(`${this.url}/aceites/${id}.json`);
   }
 
+  // tslint:disable-next-line: ban-types
   private crearArreglo(aceitesOBJ: Object) {
     const aceites: AceiteModel[] = [];
     console.log(aceitesOBJ);
@@ -104,7 +105,8 @@ export class AceitesService {
               imageUrl: onfullfilled,
               title: 'Tu imagen se cargó exitosamente',
               showConfirmButton: true,
-              timer: 2000
+              allowOutsideClick: false
+
             });
             // console.log('(promise) the download url is:  ' + onfullfilled);
             this.downloadURL = onfullfilled;

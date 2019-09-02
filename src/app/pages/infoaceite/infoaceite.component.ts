@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class InfoaceiteComponent implements OnInit {
 
   aceite = new AceiteModel();
+  noImage = '../../../assets/noImage.png';
 
   constructor(private servicio: AceitesService, private route: ActivatedRoute) {
 
@@ -24,6 +25,15 @@ export class InfoaceiteComponent implements OnInit {
     this.servicio.getInfoAceite(id).subscribe((resp: AceiteModel) => {
       this.aceite = resp;
       this.aceite.id = id;
+
+      if (!this.aceite.urlImagen) {
+        this.aceite.urlImagen = this.noImage;
+        return this.aceite.urlImagen;
+      } else {
+        return this.aceite.urlImagen;
+      }
+
+
     });
   }
 

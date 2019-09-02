@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AceiteModel } from './../../models/aceite.model';
 import { NgForm } from '@angular/forms';
 import { AceitesService } from './../../services/aceites.service';
-import { HttpClient } from '@angular/common/http';
-import { FileItem } from 'src/app/models/file-item';
-import { AngularFireStorage } from '@angular/fire/storage';
-
-import * as firebase from 'firebase';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 
@@ -20,7 +15,7 @@ export class AceiteComponent implements OnInit {
   paises: string[] = ['Brazil', 'India', 'Australia', 'Morocco', 'Bulgaria'];
   aceite = new AceiteModel();
 
-  constructor(public servicio: AceitesService, private route: ActivatedRoute) {
+  constructor(public servicio: AceitesService, private route: ActivatedRoute, private router: Router) {
     // const id = this.route.snapshot.paramMap.get('id');
     // this.servicio
     //   .getInfoAceite(id)
@@ -41,6 +36,7 @@ export class AceiteComponent implements OnInit {
         .subscribe((resp: AceiteModel) => {
           this.aceite = resp;
           console.log('URL IMAGEN', this.aceite.urlImagen);
+          this.servicio.downloadURL = this.aceite.urlImagen;
           this.aceite.id = id;
 
         });
@@ -75,6 +71,7 @@ export class AceiteComponent implements OnInit {
           text: 'Se actualizó correctamente',
           type: 'success'
         });
+        this.router.navigateByUrl('/aceites');
       });
     } else {
       this.aceite.urlImagen = this.servicio.downloadURL;
@@ -86,6 +83,7 @@ export class AceiteComponent implements OnInit {
           text: 'Se guardó la información correctamente',
           type: 'success'
         });
+        this.router.navigateByUrl('/aceites');
       });
     }
   }
