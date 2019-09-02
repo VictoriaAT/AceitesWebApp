@@ -1,17 +1,17 @@
 <app-navbar> </app-navbar>
 <div class="container mt-4">
+
   <div class="row">
     <div class="col text-right">
       <button class="btn btn-warning" [routerLink]="['/aceites']">
         <i class="fas fa-long-arrow-alt-left"></i>
         Regresar
       </button>
+
     </div>
   </div>
-  <h2>
-    Aceite de <small>{{ aceite.nombre }}</small>
-  </h2>
-  <hr />
+  <h2>Aceite de <small>{{aceite.nombre}}</small></h2>
+  <hr>
 
   <div class="row">
     <div class="col">
@@ -19,141 +19,93 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Firebase ID</label>
           <div class="col-sm-6">
-            <input
-              type="text"
-              readonly
-              class="form-control"
-              disabled="disabled"
-              placeholder="Firebase ID"
-              [(ngModel)]="aceite.id"
-              name="id"
-            />
-            <small class="form-text text-muted"
-              >*Este campo es autogenerado</small
-            >
+            <input type="text" readonly class="form-control" disabled="disabled" placeholder="Firebase ID"
+              [(ngModel)]="aceite.id" name="id">
+            <small class="form-text text-muted">*Este campo es autogenerado</small>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Nombre aceite</label>
           <div class="col-sm-6">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Nombre aceite"
-              [(ngModel)]="aceite.nombre"
-              name="nombre"
-              required
-            />
+            <input type="text" class="form-control" placeholder="Nombre aceite" [(ngModel)]="aceite.nombre"
+              name="nombre" required>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Nombre científico</label>
           <div class="col-sm-6">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Nombre científico"
-              [(ngModel)]="aceite.nombreCientifico"
-              name="nombreCientifico"
-              required
-            />
+            <input type="text" class="form-control" placeholder="Nombre científico"
+              [(ngModel)]="aceite.nombreCientifico" name="nombreCientifico" required>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">País</label>
           <div class="col-sm-6">
-            <select
-              class="custom-select"
-              name="pais"
-              required
-              [(ngModel)]="aceite.pais"
-              name="pais"
-            >
+            <select class="custom-select" name="pais" required [(ngModel)]="aceite.pais" name="pais">
               <option selected disabled>Selecciona un país</option>
-              <option *ngFor="let pais of paises">{{ pais }}</option>
+              <option *ngFor="let pais of paises">{{pais}}</option>
             </select>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Beneficios</label>
           <div class="col-sm-6">
-            <textarea
-              type="text"
-              class="form-control"
-              placeholder="Beneficios"
-              [(ngModel)]="aceite.beneficios"
-              name="beneficios"
-              required
-            ></textarea>
+            <textarea type="text" class="form-control" placeholder="Beneficios" [(ngModel)]="aceite.beneficios"
+              name="beneficios" required></textarea>
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Fotografía</label>
           <div class="col-md-6 mb-3">
-<<<<<<< HEAD
             <input type="file" (input)="servicio.upload($event)" #input class="form-control" accept=".png,.jpg"
               required />
-=======
-            <input
-              type="file"
-              (input)="servicio.upload($event)"
-              #input
-              class="form-control"
-              accept=".png,.jpg"
-            />
->>>>>>> 6b3a9c04c7e3adb4b5227ea5f3d83226270d84ee
 
             <div class="progress mt-3">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                [ngStyle]="{ width: servicio.progreso + '%' }"
-              ></div>
+              <div class="progress-bar" role="progressbar" [ngStyle]="{'width': servicio.progreso + '%'}"></div>
             </div>
           </div>
 
+
+
           <!-- <div class="col-md-2 mb-3">
 
-            
+
             <button (click)="input" class="btn btn-primary" required><i class="fas fa-upload"></i></button>
           </div> -->
         </div>
-        <pre>{{ aceite.urlImagen || 'load' }}</pre>
+
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Url imagen cargada</label>
           <div class="col-sm-6">
-            <textarea
-              type="text"
-              [ngModel]="aceite.urlImagen"
-              class="form-control"
-              name="urlImagen"
-              placeholder="Url"
-              value="{{ aceite.urlImagen }}"
-              disabled="disabled"
-            >
+            <textarea type="text" [ngModel]="aceite.urlImagen" class="form-control" name="urlImagen" placeholder="Url"
+              [value]="servicio.downloadURL" disabled="disabled">
             </textarea>
-            <small class="form-text text-muted"
-              >*Este campo es autogenerado</small
-            >
+            <small class="form-text text-muted">*Este campo es autogenerado</small>
           </div>
         </div>
 
+
         <div class="form-group text-center mt-5">
-          <button
-            [disabled]="f.invalid"
-            type="submit"
-            class="btn btn-outline-success w-25"
-          >
+          <button [disabled]="f.invalid" type="submit" class="btn btn-outline-success w-25">
             <i class="fa fa-save fa-2x"> </i>
             Guardar
           </button>
+
         </div>
+
+
+
 
         <!-- <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
           File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
         </div> -->
+
+
+
       </form>
     </div>
   </div>
+
+
 </div>
