@@ -101,19 +101,17 @@ export class AceitesService {
         uploadTask.snapshot.ref.getDownloadURL().then(
           (onfullfilled: any) => {
             Swal.fire({
-              type: 'success',
+              imageUrl: onfullfilled,
               title: 'Tu imagen se cargó exitosamente',
-              showConfirmButton: false,
+              showConfirmButton: true,
               timer: 2000
             });
             // console.log('(promise) the download url is:  ' + onfullfilled);
             this.downloadURL = onfullfilled;
             console.log('Url Imagen', this.downloadURL);
-
             return this.downloadURL;
-
-
           },
+
           (onrejected: any) => {
             console.log('(promise) the download url has been rejected');
           });

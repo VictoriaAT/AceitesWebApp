@@ -20,7 +20,7 @@ export class AceiteComponent implements OnInit {
   paises: string[] = ['Brazil', 'India', 'Australia', 'Morocco', 'Bulgaria'];
   aceite = new AceiteModel();
 
-  constructor(private servicio: AceitesService, private route: ActivatedRoute) {
+  constructor(public servicio: AceitesService, private route: ActivatedRoute) {
     // const id = this.route.snapshot.paramMap.get('id');
     // this.servicio
     //   .getInfoAceite(id)
@@ -33,6 +33,8 @@ export class AceiteComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    this.servicio.downloadURL = '';
+    this.aceite.urlImagen = '';
     if (id !== 'nuevo') {
       this.servicio
         .getInfoAceite(id)
@@ -40,8 +42,6 @@ export class AceiteComponent implements OnInit {
           this.aceite = resp;
           console.log('URL IMAGEN', this.aceite.urlImagen);
           this.aceite.id = id;
-          this.aceite.urlImagen = resp.urlImagen;
-
 
         });
     }

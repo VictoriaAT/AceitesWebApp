@@ -58,7 +58,8 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Fotografía</label>
           <div class="col-md-6 mb-3">
-            <input type="file" (input)="servicio.upload($event)" #input class="form-control" accept=".png,.jpg" />
+            <input type="file" (input)="servicio.upload($event)" #input class="form-control" accept=".png,.jpg"
+              required />
 
             <div class="progress mt-3">
               <div class="progress-bar" role="progressbar" [ngStyle]="{'width': servicio.progreso + '%'}"></div>
