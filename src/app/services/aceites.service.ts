@@ -1,4 +1,5 @@
 
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AceiteModel } from './../models/aceite.model';
@@ -8,6 +9,7 @@ import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -44,10 +46,9 @@ export class AceitesService {
 
 
   actualizarAceite(aceite: AceiteModel) {
+
     const aceiteTemp = {
       ...aceite,
-
-
     };
     delete aceiteTemp.id;
 
@@ -86,7 +87,6 @@ export class AceitesService {
 
   }
 
-
   upload(event) {
 
     const storageRef = firebase.storage().ref();
@@ -103,13 +103,13 @@ export class AceitesService {
             Swal.fire({
               imageUrl: onfullfilled,
               title: 'Tu imagen se cargó exitosamente',
-              showConfirmButton: true,
-              timer: 2000
+              showConfirmButton: true
             });
             // console.log('(promise) the download url is:  ' + onfullfilled);
             this.downloadURL = onfullfilled;
             console.log('Url Imagen', this.downloadURL);
             return this.downloadURL;
+
           },
 
           (onrejected: any) => {

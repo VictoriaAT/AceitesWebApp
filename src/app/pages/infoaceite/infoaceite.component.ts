@@ -13,17 +13,25 @@ import { Observable } from 'rxjs';
 export class InfoaceiteComponent implements OnInit {
 
   aceite = new AceiteModel();
-
+  noImage = '../../../assets/noImage.png';
   constructor(private servicio: AceitesService, private route: ActivatedRoute) {
-
-
   }
 
   ngOnInit() {
+
     const id = this.route.snapshot.paramMap.get('id');
     this.servicio.getInfoAceite(id).subscribe((resp: AceiteModel) => {
       this.aceite = resp;
       this.aceite.id = id;
+
+      if (!this.aceite.urlImagen) {
+        this.aceite.urlImagen = this.noImage;
+        return this.aceite.urlImagen;
+      }
+      else {
+        return this.aceite.urlImagen;
+      }
+
     });
   }
 

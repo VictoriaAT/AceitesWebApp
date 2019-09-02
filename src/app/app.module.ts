@@ -15,7 +15,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -23,7 +22,13 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { InfoaceiteComponent } from './pages/infoaceite/infoaceite.component';
 
+<<<<<<< HEAD
 
+
+
+
+=======
+>>>>>>> 6b3a9c04c7e3adb4b5227ea5f3d83226270d84ee
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +39,7 @@ import { InfoaceiteComponent } from './pages/infoaceite/infoaceite.component';
     NavbarComponent,
     HomeComponent,
     InfoaceiteComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,9 +51,8 @@ import { InfoaceiteComponent } from './pages/infoaceite/infoaceite.component';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule
-
   ],
   providers: [AceitesService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
